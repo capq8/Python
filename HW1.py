@@ -77,7 +77,7 @@ def testAddup():
 		return False
 	if(d2 != {}):
 		return False
-	if(d3 != {}):
+	if(d3.items() != []):
 		return False
 
 	return True
