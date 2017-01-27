@@ -36,6 +36,7 @@ def testDecrypt():
 def charCount(s):
 	#use dict to count and then use sorted feature to sort
 	#freq first, then alph order later. 
+	s = s.replace(" ", "")
 	d = {}
 	for i,c in enumerate(s):
 		if (d.has_key(c) == False):
