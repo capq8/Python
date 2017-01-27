@@ -71,6 +71,6 @@ def dictAddup(d):
 	return final
 	print(final)
 
-d = {"Monday":{'355':2, '300': 5}, 
-"Tuesday":{'360':5, '355':11}, "Friday":{'360':5, '355':13}}
-dictAddup(d)
+d = {"Monday":{'355':2, '300': 5}, "Tuesday":{'360':5, '355':11}, "Friday":{'360':5, '355':13}}
+d2 = {}
+dictAddup(d2)
