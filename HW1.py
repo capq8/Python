@@ -1,7 +1,5 @@
 #! /usr/bin/python3
-
-
-
+#{name: "Quang Nguyen", id: 11399147}
 def cryptDict(str1, str2):
 	#map string by index
 	d = {}
@@ -67,10 +65,32 @@ def dictAddup(d):
 			if(final.has_key(c)):
 				final[c] += h
 			else:
-				final[c] = h
+				final[c] = h		
 	return final
-	print(final)
+	
+def testAddup():
+	d = dictAddup({"Monday":{'355':2, '300': 5}, "Tuesday":{'360':5, '355':11}, "Friday":{'360':5, '355':13}})
+	d2 = dictAddup({"Monday": {}, "Tuesday":{}, "Friday":{}})
+	d3 = dictAddup({"": {}, "":{}, "":{}})
 
-d = {"Monday":{'355':2, '300': 5}, "Tuesday":{'360':5, '355':11}, "Friday":{'360':5, '355':13}}
-d2 = {}
-dictAddup(d2)
+	if(d['355'] != 26):
+		return False
+	if(d2 != {}):
+		return False
+	if(d3 != {}):
+		return False
+
+	return True
+
+
+def testAll():
+	if(testAddup() and testCount() and testDecrypt()):
+		print("all tests passed successfully.")
+		return 1
+	else:
+		print("test failed.")
+		return 0
+
+
+if __name__ == '__main__':
+	testAll()
