@@ -33,7 +33,19 @@ def testDecrypt():
 		return False
 	return True
 
-print(testDecrypt())
+def charCount(s):
+	#use dict to count and then use sorted feature to sort
+	#freq first, then alph order later. 
+	d = {}
+	for i,c in enumerate(s):
+		if (d.has_key(c) == False):
+			d[c] = s.count(c)
+	return sorted(d.items(), key=lambda s: (s[1], s[0]))
+	
+
+
+print(charCount("Cpts355 --- Assign1"))
+
 
 
 
