@@ -56,11 +56,21 @@ def testCount():
 		return False
 	return True
 
-print(testCount())
-#print(charCount("Cpts355 --- Assign1"))
+def dictAddup(d):
+	#1. turn dict to tuple
+	#2. interate through tuple and add up all courses key corresponding value
+	final = {}
+	d = d.items()
+	for i,d in d:
+		day = d.items()
+		for c,h in day:
+			if(final.has_key(c)):
+				final[c] += h
+			else:
+				final[c] = h
+	return final
+	print(final)
 
-d = {Monday:{’355’:2,’451’:1,’360’:2},Tuesday:{’451’:2,’360’:3}, Thursday:{’355’:3,’451’:2,’360’:3}, 
-Friday:{’355’:2}, Sunday:{’355’:1,’451’:3,’360’:1}}
-
-
-#print(decrypt(cryptDict("abc", "xyz"), "adz"))
+d = {"Monday":{'355':2, '300': 5}, 
+"Tuesday":{'360':5, '355':11}, "Friday":{'360':5, '355':13}}
+dictAddup(d)
