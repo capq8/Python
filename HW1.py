@@ -3,7 +3,7 @@
 
 
 def cryptDict(str1, str2):
-	#write your code here
+	#map string by index
 	d = {}
 	for i,c in enumerate(str1):
 		d[c] = str2[i]
@@ -11,7 +11,7 @@ def cryptDict(str1, str2):
 	pass
 
 def decrypt(cdict,s):
-	#write your code here
+	#replace by key value if key exist 
 	for i,c in enumerate(s):
 		if (cdict.has_key(c)):
 			s = s.replace(c,cdict[c])
@@ -43,9 +43,21 @@ def charCount(s):
 			d[c] = s.count(c)
 	return sorted(d.items(), key=lambda s: (s[1], s[0]))
 	
+def testCount():
+	#1. base case, no white space
+	#2. test some string
+	#3. test some string with special character 
+	s1 = dict(charCount(" test "))
+	s2 = dict(charCount("hello_test1"))
+	s3 = dict(charCount("hello_yhz`';,.>"))
+	if(s3['`'] != 1 or s3['_'] != 1):
+		return False
+	if(s2['l'] != 2):
+		return False
+	return True
 
-
-print(charCount("Cpts355 --- Assign1"))
+print(testCount())
+#print(charCount("Cpts355 --- Assign1"))
 
 
 
