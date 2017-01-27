@@ -52,6 +52,8 @@ def testCount():
 		return False
 	if(s2['l'] != 2):
 		return False
+	if(s1['t'] != 2 and s1['e'] != 1):
+		return False
 	return True
 
 def dictAddup(d):
