@@ -59,7 +59,8 @@ def testCount():
 print(testCount())
 #print(charCount("Cpts355 --- Assign1"))
 
-
+d = {Monday:{’355’:2,’451’:1,’360’:2},Tuesday:{’451’:2,’360’:3}, Thursday:{’355’:3,’451’:2,’360’:3}, 
+Friday:{’355’:2}, Sunday:{’355’:1,’451’:3,’360’:1}}
 
 
 #print(decrypt(cryptDict("abc", "xyz"), "adz"))
