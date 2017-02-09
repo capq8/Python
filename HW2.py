@@ -117,8 +117,14 @@ def testMod():
   return True
 
 
+def length():
+  a = opPop()
+
 testAdd()
 testSub()
 testMul()
 testDiv()
 testMod()
+
+a = [1 2 3]
+print(a)
