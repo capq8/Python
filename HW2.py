@@ -116,9 +116,20 @@ def testMod():
   print("mod function passed.")
   return True
 
+def removesqare(str):
+  a = list(str)
+  a.pop(0)
+  a.pop(len(a)- 1)
+  a = "".join(a)
+  return a
+
 
 def length():
   a = opPop()
+  a = removesqare(a)
+  print((a.split()))
+  return (len(a.split()))
+
 
 testAdd()
 testSub()
@@ -126,5 +137,6 @@ testMul()
 testDiv()
 testMod()
 
-a = [1 2 3]
-print(a)
+test = "[1 2 3 [a b]]"
+opstack.append(test)
+print(length())
