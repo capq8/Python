@@ -121,7 +121,8 @@ def arrayCounter(a):
   outercount = 0
   innercount = 0
 
-  for i in a:
+  for i,c in enumerate(a):
+    print(c)
 
     if i == '[' and outercount == 0:
       outercount += 1
