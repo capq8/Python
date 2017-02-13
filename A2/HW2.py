@@ -229,6 +229,7 @@ def testExch():
 
   
 def clear():
+  global opstack
   opstack = []
 
 def testClear():
@@ -311,23 +312,41 @@ def rollHelper(item, position):
       opstack.append(i)
     for i in reversed(ostack):
       opstack.append(i)
-  
+
 def testRoll():
-  opstack = [1, 2, 3, 4, 5, 6, 7, 8, 9, 7, 3]
+
+  opPush(1)
+  opPush(2)
+  opPush(3)
+  opPush(4)
+  opPush(5)
+  opPush(6)
+  opPush(7)
+  opPush(8)
+  opPush(9)
+  opPush(7)
+  opPush(3)
   roll()
 
+  if(opstack != [1, 2, 7, 8, 9, 3, 4, 5, 6]):
+    print("roll function failed.")
+    return False
 
+  for i in opstack:
+    opPop()
+  print("roll function passed.")
+  return True
 
 
 testRoll()
-# testAdd()
-# testSub()
-# testMul()
-# testDiv()
-# testMod()
-# testLength()
-# testGet()
-# testDup()
-# testExch()
-# testClear()
-# testCopy()
+testClear()
+testCopy()
+testAdd()
+testSub()
+testMul()
+testDiv()
+testMod()
+testLength()
+testGet()
+testDup()
+testExch()
