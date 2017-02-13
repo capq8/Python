@@ -1,11 +1,25 @@
 from random import *
 
 opstack = []
+dictstack = []
+
+
+def dictPop():
+  global dictstack
+  return dictstack.pop()
+
+
+def dictPush(mdict):
+  global dictstack
+  dictstack.append(mdict)
+
 
 def opPop():
+  global opstack
   return opstack.pop()
 
 def opPush(value):
+  global opstack
   opstack.append(value)
 
 def define(name, value):
@@ -338,15 +352,110 @@ def testRoll():
   return True
 
 
-testRoll()
-testClear()
-testCopy()
-testAdd()
-testSub()
-testMul()
-testDiv()
-testMod()
-testLength()
-testGet()
-testDup()
-testExch()
+
+def dict():
+  size = opPop() #but we wont need because im using python dict 
+  opPush({})
+
+def testDict():
+  opPush(5)
+  dict()
+  if opPop() != {}:
+    print("dict function failed.")
+    return False
+  print("dict function passed.")
+  return True
+
+
+def begin():
+  dictPush(opPop())
+
+def testBegin():
+  opstack.append({})
+  begin()
+
+  if dictPop() != {}:
+    print("begin function failed.")
+    return False
+  print("begin function passed.")
+  return True
+
+def end():
+  dictPop()
+  pass
+
+def testEnd():
+  dictPush({})
+  if dictPop() != {}:
+    print("end function failed.")
+    return False
+  print("end function passed.")
+  return True
+
+def psDef():
+  value = opPop()
+  name = opPop()
+  dictPush({})
+
+  define(name,value)
+
+
+
+def define(name, value):
+  mydict = dictPop()
+  mydict[name] = value
+  dictPush(mydict)
+
+def testDefine():
+  name = "test"
+  value = 11
+  dictPush({})
+  define(name, value)
+  if dictstack != [{'test': 11}]:
+    print("define function failed.")
+    return False
+  print("define function passed.")
+  return True
+
+def testpsDef():
+  opPush('x')
+  opPush(5)
+  psDef()
+  if dictstack != [{'x': 5}]:
+    print("psDef function failed.")
+    return False
+  print("psDef function passed.")
+  return True
+
+def lookup(name):
+  for i in dictstack:
+    if i.has_key(name):
+      return i[name]
+  return "name does not exist."
+
+def testLookup():
+  dictPush({'/a': 15})
+  dictPush({'b': 52})
+  dictPush({'c': 53})
+
+  if lookup('/a') == 15 and lookup('b') == 52 and lookup('c') == 53 and lookup('q') == "name does not exist." :
+    print("lookup function passed.")
+    return True
+  else:
+    print("lookup function failed.")
+    return False
+
+
+
+def test():
+  global dictstack
+  global opstack
+  tests = [testLookup, testpsDef, testDefine, testEnd, testBegin, testDict, testRoll, testClear, testCopy, testAdd, testSub, testMul,
+  testDiv, testMod, testLength, testGet, testDup, testExch] 
+  for (tprocess) in tests:
+    opstack = []
+    dictstack = []
+    tprocess()
+
+test()
+
