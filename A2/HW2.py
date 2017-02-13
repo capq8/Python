@@ -1,3 +1,8 @@
+#Quang Nguyen 
+#11399147 
+#Post Script implementation
+#most implementation are standard from PPT.  I will add some comments on assumptions I've made
+
 from random import *
 
 opstack = []
