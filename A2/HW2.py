@@ -312,11 +312,14 @@ def rollHelper(item, position):
     for i in reversed(ostack):
       opstack.append(i)
   
+def testRoll():
+  opstack = [1, 2, 3, 4, 5, 6, 7, 8, 9, 7, 3]
+  roll()
 
 
-opstack = [1, 2, 3, 4, 5, 6, 7, 8, 9, 7, 3]
-roll()
-stack()
+
+
+testRoll()
 # testAdd()
 # testSub()
 # testMul()
