@@ -169,7 +169,7 @@ def testLength():
     print("length function failed.")
     return False
 
-  print("length test passed.")
+  print("length function passed.")
   return True
 
 def get():
@@ -187,7 +187,7 @@ def testGet():
     print("get function failed.")
     return False
 
-  print("get test passed.")
+  print("get function passed.")
   return True
 
 
