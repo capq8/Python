@@ -228,17 +228,103 @@ def testExch():
   return True
 
   
+def clear():
+  opstack = []
+
+def testClear():
+  clear()
+  if opstack != []:
+    print("clear function failed.")
+    return False
+
+  print("clear function passed.")
+  return True
+
+def stack():
+  for item in reversed(opstack):
+    print(item)
+  print("---")
+def copy():
+
+  index = opPop()
+  
+  copyHelper(index)
+
+def copyHelper(index):
+  #pop and store value, then push it back x2
+  tempstack = []
+  for i in range(index):
+    tempstack.append(opPop())
+
+  for i in range(2):
+    for item in reversed(tempstack):
+      opPush(item)
+
+def testCopy():
+  testArr = []
+  ansArr = [1 , 2, 3, 2, 3] 
+  opPush(1)
+  opPush(2)
+  opPush(3)
+  opPush(2) #copy value 
+  copy()
 
 
+  for item in opstack:
+    testArr.append(item)
+
+  if testArr != ansArr:
+    print("copy function failed.")
+    return False
+
+  print("copy function passed.")
+  return True
+  
+  
+def roll():
+  item = opPop()
+  position = opPop()
+
+  rollHelper(item, position)
 
 
+def rollHelper(item, position):
+  #accounting for python array starts at 0
+  arr = []
 
-testAdd()
-testSub()
-testMul()
-testDiv()
-testMod()
-testLength()
-testGet()
-testDup()
-testExch()
+  if item > position:
+    tPop = position 
+    for i in range(tPop):
+      arr.append(opPop())
+
+    for i in arr: 
+      opPush(i)
+  elif item < position:
+    mstack = []
+    ostack = []
+    for i in range(item):
+      mstack.append(opPop())
+    leftover = position - item
+    for i in range(leftover):
+      ostack.append(opPop())
+    for i in reversed(mstack):
+      opstack.append(i)
+    for i in reversed(ostack):
+      opstack.append(i)
+  
+
+
+opstack = [1, 2, 3, 4, 5, 6, 7, 8, 9, 7, 3]
+roll()
+stack()
+# testAdd()
+# testSub()
+# testMul()
+# testDiv()
+# testMod()
+# testLength()
+# testGet()
+# testDup()
+# testExch()
+# testClear()
+# testCopy()
