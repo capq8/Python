@@ -159,15 +159,37 @@ def cleanOuterBracket(str):
 
 def length():
   strArray = arrayCounter(opPop())
-  return  len(strArray)
+  opstack.append(len(strArray))
 
+def testLength():
+  opstack.append("[1 2 3 5 [a c d] [] [a b]]")
+  length()
+
+  if opPop() != 7:
+    print("length function failed.")
+    return False
+
+  print("length test passed.")
+  return True
 
 def get():
   index = opPop()
   array = arrayCounter(opPop())
 
   opPush(array[index])
-  print(array[index])
+
+def testGet():
+  test = "[1 2 3 5 [a c d] [] [a b]]"
+  opstack.append(test)
+  opstack.append(1)
+  get()
+  if opPop() != '2':
+    print("get function failed.")
+    return False
+
+  print("get test passed.")
+  return True
+
 
 
 
@@ -177,10 +199,6 @@ testSub()
 testMul()
 testDiv()
 testMod()
+testLength()
+testGet()
 
-test = "[1 2 3 5 [a c d] [] [a b]]"
-opstack.append(test)
-opstack.append(1)
-get()
-print(opstack)
-#print(length())
