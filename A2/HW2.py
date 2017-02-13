@@ -117,13 +117,11 @@ def testMod():
   return True
 
 def arrayCounter(a):
-  mylen = 0
   outercount = 0
   innercount = 0
+  strCounter = 0
 
-  for i,c in enumerate(a):
-    print(c)
-
+  for i in a:
     if i == '[' and outercount == 0:
       outercount += 1
 
@@ -135,18 +133,43 @@ def arrayCounter(a):
 
     elif i == ']' and innercount == 0 and outercount > 0:
       outercount -= 1
-      mylen += 1
 
     elif outercount > 0 and innercount > 0:
+      strCounter += 1
       continue 
+
     elif i == " ":
-      mylen += 1
+      s = list(a)
+      #add ','' so we can split it into traditional python array 
+      #it is much easier to manage array in python
+      s[strCounter] = ','
+      a = "".join(s)
+      
+    strCounter += 1    
+  a = cleanOuterBracket(a)
 
-  return mylen
+  return a.split(',')
 
+def cleanOuterBracket(str):
+  a = list(str)
+  a.pop(0)
+  a.pop(len(a)- 1)
+  a = "".join(a)
+  return a
 
 def length():
-  return arrayCounter(opPop())
+  strArray = arrayCounter(opPop())
+  return  len(strArray)
+
+
+def get():
+  index = opPop()
+  array = arrayCounter(opPop())
+
+  opPush(array[index])
+  print(array[index])
+
+
 
 
 testAdd()
@@ -157,5 +180,7 @@ testMod()
 
 test = "[1 2 3 5 [a c d] [] [a b]]"
 opstack.append(test)
-
-print(length())
+opstack.append(1)
+get()
+print(opstack)
+#print(length())
