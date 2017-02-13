@@ -190,6 +190,45 @@ def testGet():
   print("get function passed.")
   return True
 
+def dup():
+  opstack.append(opstack[len(opstack) -1 ])
+
+def testDup():
+  opstack.append('3')
+  dup()
+  one = opPop()
+  two = opPop()
+
+  if one != two:
+    print("dup function failed.")
+    return False
+
+  print("dup function passed.")
+  return True
+
+def exch():
+  one = opPop()
+  two = opPop()
+
+  opPush(one)
+  opPush(two)
+
+def testExch():
+  opPush(1)
+  opPush(2)
+  exch()
+  one = opPop()
+  two = opPop()
+
+  if one != 1 or two != 2:
+    print("exch function failed.")
+    return False
+
+  print("exch function passed.")
+  return True
+
+  
+
 
 
 
@@ -201,4 +240,5 @@ testDiv()
 testMod()
 testLength()
 testGet()
-
+testDup()
+testExch()
