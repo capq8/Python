@@ -1,26 +1,26 @@
-Halting/Computability:
-turning & church - as powerful as turing machine & lambda calc, we cant solve every partial function 
-computable function != total function
-computable function != partial function 
-partial f = 1-1
-total f = 1-many | 1-1
+Halting/Computability:  
+turning & church - as powerful as turing machine & lambda calc, we cant solve every partial function   
+computable function != total function  
+computable function != partial function   
+partial f = 1-1  
+total f = 1-many | 1-1  
 
-Postscript:
-dup - duplicate the top value on the stack
-• pop - pop the top value from the stack
-• = - pop the top value from the stack and print it
-• stack - display the contents of the stack
-• count - push a count of how many values are on the stack
-• exch - exchange the top two stack values
-• 4 index - copy the 4th stack value (from top) onto the top
-(staring from index 0)
-• 2 copy - copy the top 2 stack values onto the stack
-• count copy - copy the entire stack on itself!
-• 4 2 roll - move the top 2 values on the stack into
-% the 4th stack position from the top
-• 4 -2 roll - move the last 2 of the top 4 values to
+Postscript:  
+dup - duplicate the top value on the stack  
+• pop - pop the top value from the stack  
+• = - pop the top value from the stack and print it  
+• stack - display the contents of the stack  
+• count - push a count of how many values are on the stack  
+• exch - exchange the top two stack values  
+• 4 index - copy the 4th stack value (from top) onto the top  
+(staring from index 0)  
+• 2 copy - copy the top 2 stack values onto the stack  
+• count copy - copy the entire stack on itself!  
+• 4 2 roll - move the top 2 values on the stack into  
+% the 4th stack position from the top  
+• 4 -2 roll - move the last 2 of the top 4 values to  
 % the top of the stack
-• count -1 roll - move the bottom stack value to the top
+• count -1 roll - move the bottom stack value to the top  
 
 
 dict - operator takes the initial size of the dictionary from the
