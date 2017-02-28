@@ -264,6 +264,7 @@ def stack():
   for item in reversed(opstack):
     print(item)
   print("---")
+  
 def copy():
 
   index = opPop()
