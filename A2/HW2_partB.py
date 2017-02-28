@@ -3,9 +3,6 @@ import re
 
 
 
-
-
-
 def tokenize(s):
 	retValue = re.findall("/?[a-zA-Z][a-zA-Z0-9_]*|[[][a-zA-Z0-9_\s!][a-zA-Z0-9_\s!]*[]]|[-]?[0-9]+|[}{]+|%.*|[^ \t\n]", s)
 	return retValue
@@ -52,8 +49,8 @@ def arrtoken(a):
 	return stoken
 
 #<init> <incr> <final> <code array> 
+#push iteration on the stak, then call interpreter to run another function
 def doFor():
-
 	opFunction = HW2_partA.opPop()
 	opFinal = int(HW2_partA.opPop())
 	opIncrement = HW2_partA.opPop()
@@ -65,48 +62,41 @@ def doFor():
 		interpreter(opFunction)
 		i += opIncrement
 
+#convert to array, then put current array value onstack, then call code array 
 def doForAll():
-	print "test doforall"
-
 	opFunction = HW2_partA.opPop()
 	opArr = HW2_partA.opPop()
-
-	print opFunction
-
-
-
-	# i = opInitial
-	# while i < opFinal + 1:
-	# 	HW2_partA.opPush(i)
-	# 	interpreter(opFunction)
-	# 	i += opIncrement
-
+	for i in opArr:
+		HW2_partA.opPush(int(i))
+		interpreter(opFunction)
 
 
 def arrMaker(s):
-	print(s)
 	s = HW2_partA.cleanOuterBracket(s)
 	s = s.split(" ")
 	return s
-		
 
 
 
 def interpreter(ops):
 	for i in ops:
 
+
 		if isinstance(i, list):
-			print "is code array"
-			#handle a code array
 			HW2_partA.opPush(i)
 		elif i.isdigit():
 			HW2_partA.opPush(int(i))
+		elif i[0] == "/":
+			HW2_partA.opPush(i)
+		elif i.isalpha() and HW2_partA.lookup(i):
+			HW2_partA.opPush(HW2_partA.lookup(i))
+		elif i == "def":
+			HW2_partA.psDef()
 		elif i == "add":
 			HW2_partA.add()
 		elif i == "sub":
 			HW2_partA.sub()
 		elif i == "mul":
-			print "calling mul"
 			HW2_partA.mul()
 		elif i == "div":
 			HW2_partA.div()
@@ -140,31 +130,49 @@ def interpreter(ops):
 			HW2_partA.opPush(arrMaker(i))
 		elif i == "forall": 
 			doForAll()
+		elif i == "length": 
+			HW2_partA.length()
+		elif i == "get":
+			HW2_partA.get()
 		elif i == "for": # 
 			doFor()
 		
-
-		
-	HW2_partA.stack()
-
-
-
-
-
-
-
-
-
-
-
 	
 
 
+def testFor():
+	s = "1 1 5 {2 mul} for"
+	interpreter(arrtoken(s))
+	testsol = [2, 4, 6, 8, 10]
+
+	for i in reversed(testsol):
+		if HW2_partA.opPop() == i :
+			return True
+	return False
+
+def testForAll():
+	s = "[1 2 3 4] {2 mul} forall"
+	interpreter(arrtoken(s))
+	testsol = [2, 4, 6, 8]
+
+	for i in reversed(testsol):
+		if HW2_partA.opPop() == i :
+			return True
+	return False
+
+def testInterpreter():
+	s = "/x 1 2 add 3 add 2 mul 3 div def"
+	interpreter(arrtoken(s))
+	if int(HW2_partA.lookup('x')) == 4:
+		return True
+	else:
+		return False
 
 
+def partBTest():
+	testFor()
+	testForAll()
+	testInterpreter()
 
-s = "[1 2 3 4] {2 mul} forall"
-#"/square {dup mul} {1 2 3 4} def 1 square [1 2 3 4] length {2 3 2 4 }"
-#arrtoken(s)
-interpreter(arrtoken(s))
-#doFor()
+
+partBTest()

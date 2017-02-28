@@ -6,7 +6,7 @@
 from random import *
 
 opstack = []
-dictstack = []
+dictstack = [{}]
 
 
 def dictPop():
@@ -27,11 +27,7 @@ def opPush(value):
   global opstack
   opstack.append(value)
 
-def define(name, value):
-  pass
 
-def lookup(name):
-  pass
 
 
 def add():
@@ -264,7 +260,7 @@ def stack():
   for item in reversed(opstack):
     print(item)
   print("---")
-  
+
 def copy():
 
   index = opPop()
@@ -360,8 +356,9 @@ def testRoll():
 
 
 def dict():
+  dict = {}
   size = opPop() #but we wont need because im using python dict 
-  opPush({})
+  opPush(dict)
 
 def testDict():
   opPush(5)
@@ -401,9 +398,11 @@ def testEnd():
 def psDef():
   value = opPop()
   name = opPop()
-  dictPush({})
-
-  define(name,value)
+  if name[0] != '/':
+    return False
+  else:
+    name = name[1:]
+    define(name,value)
 
 
 
@@ -424,33 +423,38 @@ def testDefine():
   return True
 
 def testpsDef():
-  opPush('x')
-  opPush(5)
+  dictPush({})
+  opPush('/x')
+  opPush(6)
   psDef()
-  if dictstack != [{'x': 5}]:
+  if dictstack != [{'x': 6}]:
     print("psDef function failed.")
     return False
   print("psDef function passed.")
   return True
 
 def lookup(name):
-  for i in dictstack:
+  for i in reversed(dictstack):
     if i.has_key(name):
       return i[name]
-  return "name does not exist."
+  return False
 
 def testLookup():
-  dictPush({'/a': 15})
-  dictPush({'b': 52})
-  dictPush({'c': 53})
-
-  if lookup('/a') == 15 and lookup('b') == 52 and lookup('c') == 53 and lookup('q') == "name does not exist." :
+  opPush(4)
+  dict()
+  begin()
+  define('a', 15)
+  define('b', 52)
+  define('c', 11)
+  dictPush({'c': 11})
+  print dictstack
+  if lookup('a') == 15 and lookup('b') == 52 and lookup('c') == 11 and lookup('q') == "name does not exist." :
     print("lookup function passed.")
+
     return True
   else:
     print("lookup function failed.")
     return False
-
 
 
 def test():
