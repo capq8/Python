@@ -68,10 +68,12 @@ def doFor():
 def doForAll():
 	print "test doforall"
 
-	# opFunction = HW2_partA.opPop()
-	# opFinal = int(HW2_partA.opPop())
-	# opIncrement = HW2_partA.opPop()
-	# opInitial = HW2_partA.opPop()
+	opFunction = HW2_partA.opPop()
+	opArr = HW2_partA.opPop()
+
+	print opFunction
+
+
 
 	# i = opInitial
 	# while i < opFinal + 1:
@@ -92,7 +94,6 @@ def arrMaker(s):
 
 def interpreter(ops):
 	for i in ops:
-
 
 		if isinstance(i, list):
 			print "is code array"
@@ -137,6 +138,8 @@ def interpreter(ops):
 			HW2_partA.lookup()
 		elif i[0] == "[": #handle post script array 
 			HW2_partA.opPush(arrMaker(i))
+		elif i == "forall": 
+			doForAll()
 		elif i == "for": # 
 			doFor()
 		
@@ -160,7 +163,7 @@ def interpreter(ops):
 
 
 
-s = "[1 2 3 4]"
+s = "[1 2 3 4] {2 mul} forall"
 #"/square {dup mul} {1 2 3 4} def 1 square [1 2 3 4] length {2 3 2 4 }"
 #arrtoken(s)
 interpreter(arrtoken(s))
