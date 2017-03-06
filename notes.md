@@ -190,3 +190,14 @@ Double all:
 
 
 
+## Exam Solution
+Q7:
+(define (interface L1 L2) (cond (( null? L1) '())
+(else (cons (car L1) (cons (car L2) (interface ( cdr L1) (cdr L2)))))))
+
+
+Q6:
+the mystery function return the lowest value from the stack 
+
+
+
