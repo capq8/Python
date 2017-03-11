@@ -45,12 +45,19 @@
 (else (f (car L) (fold f base (cdr L)))))
 )
 
+(define (mergeUniqueN L) (fold mergelists '() L 
+ ))
 
+;(mergeUniqueN
 ;(display(numbersToSum 30 '(5 4 6 10 4 2 1 5)))
 ;(deepSum '(1 (2 3 4) (5) 6 7 (8 9 10) 11))
 ;(isSorted '(1 3 6 9 10))
 
-(mergelists '(1 2 3 4) '(3 4 5 6))
+;(mergelists '(1 2 3 4) '(3 4 5 6))
+
+;(fold mergelists '() '((1 2 3) (3 4 5) (5 6))) 
+
+(mergeUniqueN '())
 
 
 
