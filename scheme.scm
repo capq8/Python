@@ -45,9 +45,20 @@
 (else (f (car L) (fold f base (cdr L)))))
 )
 
+
 (define (mergeUniqueN L) (fold mergelists '() L 
  ))
 
+
+(define (matrixMap f L ) (cond
+      ( (null? L) '())
+      (else (cons (map f (car L)) (matrixMap f (cdr L))))
+))
+                         
+                         
+                         
+;(cons (map f (car L)) (matrixMap f (cdr L)))
+;(map  f  L)
 ;(mergeUniqueN
 ;(display(numbersToSum 30 '(5 4 6 10 4 2 1 5)))
 ;(deepSum '(1 (2 3 4) (5) 6 7 (8 9 10) 11))
@@ -57,10 +68,13 @@
 
 ;(fold mergelists '() '((1 2 3) (3 4 5) (5 6))) 
 
-(mergeUniqueN '())
+;display(mergeUniqueN '((1 2 3) (3 4 5) (5 6)))
 
 
 
-
+(matrixMap (lambda (x) (+ 1 x)) '((0 1 2) (3 4 5)) ) 
+      
+;(matrixMap (lambda (x) (* x x)) '((1 2) (3 4)) ) 
+;(map cons ’(a b c) ’((1) (2) (3))) 
 
 
