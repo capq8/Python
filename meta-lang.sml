@@ -1,5 +1,5 @@
 fun exist (x,y) = 
-if tl(x) = []  then false
+if (tl(x)=[] andalso tl(y) = [])  then false
 else
 	if hd(x) = hd(y) then true
 	else 
