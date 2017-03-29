@@ -24,3 +24,17 @@ fun listIntersect aL bL = let
  	in build([], aL)
 end;
 
+fun pairNleft N L =
+	let 
+	fun org i [] [] = [[]] |
+	org i [] (hd::result) = hd::result |
+	org i (tp::remain) (hd::result) = 
+		if i > 0 
+			then org (i-1) remain ((tp :: hd) :: result)
+		else org N (tp::remain) ([] :: hd :: result)
+	in 
+	if N > 0 then 
+	org N L [[]]
+	else [[]]
+
+end; 
