@@ -1,7 +1,3 @@
-fun exist (x,y) = 
-if (tl(x)=[] andalso tl(y) = [])  then false
-else
-	if hd(x) = hd(y) then true
-	else 
-		if tl(y) = [] then exist(tl(x), y)
-		else exist (x, tl(y));
+fun exists(x,[]) = false | 
+exists(x,hd::L) = if x = hd then true 
+else exists(x,L);
