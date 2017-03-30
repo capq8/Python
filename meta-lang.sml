@@ -38,3 +38,17 @@ fun pairNleft N L =
 	else [[]]
 
 end; 
+
+fun reverse L = 
+let
+	fun rev [] result = result  |
+	rev (hd::remain) result = 
+		rev remain (hd::result) 
+in
+rev L []
+end;
+
+fun pairNright N L = 
+	if N > 0 then
+		reverse (pairNleft N L)
+	else [[]];
