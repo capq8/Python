@@ -64,3 +64,14 @@ let
 in 
 aux pred L []
 end; 
+
+
+fun split L = 
+let
+	fun aux i [] l1 l2= (l1 , l2) |
+	aux i (hd::remain) l1 l2 = 
+	if i > 0 then aux 0 remain (hd::l1) l2
+	else aux 1 remain l1 (hd::l2);
+in 
+aux 1 L [] []
+end;
