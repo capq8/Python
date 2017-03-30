@@ -52,3 +52,15 @@ fun pairNright N L =
 	if N > 0 then
 		reverse (pairNleft N L)
 	else [[]];
+
+
+fun filter pred L = 
+let
+	fun aux pred [] result = reverse  result |
+	aux pred (hd::remain) result = 
+		if pred hd 
+			then aux pred remain (hd::result) 
+		else aux pred remain result 
+in 
+aux pred L []
+end; 
