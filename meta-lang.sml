@@ -155,7 +155,7 @@ end;
 
 datatype either = ImAString of string | ImAnInt of int
 datatype eitherTree = Empty | LEAF of either | INTERIOR of either * eitherTree * eitherTree
-(*base case empty tree, if LEAF, convert to ImAInt and compare, otherwise break it down more*)
+
 fun eitherSearch Empty num = false |
 eitherSearch (INTERIOR(e,l,r)) num =
 (eitherSearch l num) orelse (eitherSearch r num) |
@@ -165,7 +165,6 @@ ImAnInt v => num = v
 
 fun eitherTest n =
   let
-    (* Data *)
     val Ls1 = LEAF (ImAString "test_one") 
     val Ls2 = LEAF (ImAString "test_two")
     val Ls3 = LEAF (ImAString "test_three")
@@ -186,9 +185,7 @@ fun eitherTest n =
     val C = INTERIOR((ImAnInt 1),Ln4, Ln5)
     val A = INTERIOR((ImAnInt 1),B, C)
   in
-    (
       (eitherSearch A n)
-    )
   end
 
 
