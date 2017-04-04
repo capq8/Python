@@ -15,7 +15,7 @@ else exists(x,L);
 
 test(exists (1,[]), false)
 
-
+(*scan two lists for matching value, append to result*)
 fun listUnion (aL,bL) = let
   	fun build(result, [], []) = result |
 	build(result, hd::remain, y) = 
@@ -30,6 +30,7 @@ end;
 
 test(listUnion ([[2,3],[1,2]], [[1],[2,3]]), [[1],[1,2],[2,3]]);
 
+(*scan two lists for non-matching value, append to result*)
 fun listIntersect aL bL = let
   	fun build(result, []) = result | build(result, hd::remain) = 
 		if exists (hd, bL) then 
@@ -82,7 +83,7 @@ in
 aux pred L []
 end; 
 
-
+(*split first, naive split, just divide list in two lists, if car value is lower then append it first, else append l2 car*)
 fun mergesort [] = [] |
 mergesort [x] = [x] |
 mergesort L = let
@@ -154,7 +155,7 @@ end;
 
 datatype either = ImAString of string | ImAnInt of int
 datatype eitherTree = Empty | LEAF of either | INTERIOR of either * eitherTree * eitherTree
-
+(*base case empty tree, if LEAF, convert to ImAInt and compare, otherwise break it down more*)
 fun eitherSearch Empty num = false |
 eitherSearch (INTERIOR(e,l,r)) num =
 (eitherSearch l num) orelse (eitherSearch r num) |
