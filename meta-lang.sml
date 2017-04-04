@@ -133,3 +133,55 @@ aux (hd::remain) result = aux remain ((hd::[])::result)
 in 
 reverse (aux L [])
 end;
+
+
+datatype either = ImAString of string | ImAnInt of int
+datatype eitherTree = Empty | LEAF of either | INTERIOR of either * eitherTree * eitherTree
+
+fun eitherSearch Empty num = false |
+eitherSearch (INTERIOR(e,l,r)) num =
+(eitherSearch l num) orelse (eitherSearch r num) |
+eitherSearch (LEAF (v)) num =
+case v of ImAString v => false | 
+ImAnInt v => num = v
+
+
+
+
+
+
+fun eitherTest n =
+  let
+    (* Data *)
+    val Ls1 = LEAF (ImAString "test_one") 
+    val Ls2 = LEAF (ImAString "test_two")
+    val Ls3 = LEAF (ImAString "test_three")
+    val Ls4 = LEAF (ImAString "test_four")
+    val Ls5 = LEAF (ImAString "test_five")
+    val Ln1 = LEAF (ImAnInt 5)
+    val Ln2 = LEAF (ImAnInt 6)
+    val Ln3 = LEAF (ImAnInt 32)
+    val Ln4 = LEAF (ImAnInt 11)
+    val Ln5 = LEAF (ImAnInt 0)
+
+    (* Level 4 *)
+    val F = INTERIOR((ImAnInt 1), Ls1, Ls2)
+    val G = INTERIOR((ImAnInt 1), Ls3, Ls4)
+    val H = INTERIOR((ImAnInt 1), Ls5, Ln1)
+    val I = INTERIOR((ImAnInt 1), Ln2, Ln3)
+
+    (* Level 3 *)
+    val D = INTERIOR((ImAnInt 1), F, G)
+    val E = INTERIOR((ImAnInt 1), H, I)
+
+    (* Level 2 *)
+    val B = INTERIOR((ImAnInt 1), D, E)
+    val C = INTERIOR((ImAnInt 1),Ln4, Ln5)
+
+    (* Level 1 *)
+    val A = INTERIOR((ImAnInt 1),B, C)
+  in
+    (
+      (eitherSearch A n)
+    )
+  end
