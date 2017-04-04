@@ -1,3 +1,8 @@
+fun test(input, output) =
+  if input = output
+    then "Success!"
+    else "Failed"
+
 fun exists(x,[]) = false | 
 exists(x,hd::L) = if x = hd then true 
 else exists(x,L);
@@ -14,6 +19,7 @@ fun listUnion (aL,bL) = let
 	build([], aL, bL)
 end;
 
+test(exists (1,[]), false)
 
 fun listIntersect aL bL = let
   	fun build(result, []) = result | build(result, hd::remain) = 
