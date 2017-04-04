@@ -23,7 +23,7 @@ fun listUnion (aL,bL) = let
 	build([], aL, bL)
 end;
 
-
+test(listUnion ([[2,3],[1,2]], [[1],[2,3]]), [[1],[1,2],[2,3]]);
 
 fun listIntersect aL bL = let
   	fun build(result, []) = result | build(result, hd::remain) = 
