@@ -31,8 +31,10 @@ fun listIntersect aL bL = let
 			if exists (hd, result) then build(result, remain)
 			else build(hd::result, remain)
 		else build(result, remain)
- 	in build([], aL)
+ 	in reverse(build([], aL))
 end;
+
+test(listIntersect [[2,3],[1,2],[2,3]] [[1],[2,3]], [[2,3]]);
 
 fun pairNleft N L =
 	let 
