@@ -1,3 +1,8 @@
+(*Quang Nguyen
+11499147
+ML Hw*)
+
+
 fun test(input, output) =
   if input = output
     then "Success!"
