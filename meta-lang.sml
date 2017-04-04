@@ -7,6 +7,10 @@ fun exists(x,[]) = false |
 exists(x,hd::L) = if x = hd then true 
 else exists(x,L);
 
+
+test(exists (1,[]), false)
+
+
 fun listUnion (aL,bL) = let
   	fun build(result, [], []) = result |
 	build(result, hd::remain, y) = 
@@ -19,7 +23,7 @@ fun listUnion (aL,bL) = let
 	build([], aL, bL)
 end;
 
-test(exists (1,[]), false)
+
 
 fun listIntersect aL bL = let
   	fun build(result, []) = result | build(result, hd::remain) = 
