@@ -125,3 +125,11 @@ else cl2 :: (merge rest2 (cl1 :: rest1))
 in
 merge (mergesort L1) (mergesort L2)
 end
+
+
+fun unitList L  = let 
+fun aux [] result = result |
+aux (hd::remain) result = aux remain ((hd::[])::result)
+in 
+reverse (aux L [])
+end;
