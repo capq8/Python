@@ -188,7 +188,6 @@ fun eitherTest n =
 
 datatype 'a Tree = LEAF of 'a | NODE of ('a Tree) list
 
-
 fun treeToString f (LEAF v) = f v | 
 treeToString f (NODE L) = "(" ^ String.concat(map (treeToString f) L) ^ ")"
    
