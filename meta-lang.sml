@@ -66,12 +66,30 @@ aux pred L []
 end; 
 
 
+fun mergesort [] = [] |
+mergesort [x] = [x] |
+mergesort L = let
+
 fun split L = 
 let
 	fun aux i [] l1 l2= (l1 , l2) |
 	aux i (hd::remain) l1 l2 = 
 	if i > 0 then aux 0 remain (hd::l1) l2
-	else aux 1 remain l1 (hd::l2);
+	else aux 1 remain l1 (hd::l2)
 in 
 aux 1 L [] []
-end;
+end
+
+val (L1, L2) = split L
+
+fun merge [] [] = [] |
+ merge L1 [] = L1 |
+ merge [] L2 = L2 |
+ merge (cl1 :: rest1) (cl2 :: rest2) =
+if cl1 < cl2
+then cl1 :: (merge rest1 (cl2 :: rest2))
+else cl2 :: (merge rest2 (cl1 :: rest1))
+
+in
+merge (mergesort L1) (mergesort L2)
+end
