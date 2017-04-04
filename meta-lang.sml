@@ -144,3 +144,10 @@ eitherSearch (INTERIOR(e,l,r)) num =
 eitherSearch (LEAF v) num =
 case v of ImAString v => false | 
 ImAnInt v => num = v
+
+
+datatype 'a Tree = LEAF of 'a | NODE of ('a Tree) list
+
+
+fun treeToString f (LEAF v) = f v
+   | treeToString f (NODE L) = "(" ^ String.concat(map (treeToString f) L) ^ ")"
