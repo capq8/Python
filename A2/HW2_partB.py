@@ -143,7 +143,7 @@ def interpreter(ops):
 			print(staticdictstack)
 
 
-# search through the static link 
+# search through the static link
 def staticlookup(name):
 	count = 0
 	print(staticdictstack[len(staticdictstack) - 1])
@@ -187,9 +187,14 @@ def staticdefine(name, value):
 	print(staticdictstack)
 
 
-def staticRunner():
-	s = "/x 3 def /y 20 def x /c 11 def f /c 22 def"
-	ops = arrtoken(s)
+
+def staticRunner(s):
+
+	if type(s) is str:
+		ops = arrtoken(s)
+	else:
+		ops = s
+
 	for i in ops:
 
 		if isinstance(i, list):
@@ -249,7 +254,18 @@ def staticRunner():
 		else:
 			print("this should be a function call")
 			staticdictstack.append((len(staticdictstack) - 1  , {}))
+			if type(staticlookup(i)) is list:
+				print("found a list")
+				staticRunner(staticlookup(i))
+
+			else: #gonna assume this is a number
+				HW2_partA.opPush(staticlookup(i))
+
+			#staticdictstack.pop()
+			print("======static_dict=====")
 			print(staticdictstack)
+			print("======opstack=====")
+			HW2_partA.stack()
 
 	pass
 
@@ -288,7 +304,10 @@ def partBTest():
 	testForAll()
 	testInterpreter()
 
+
+testitem = "/x 4 def /g { x stack } def /f { /x 7 def g } def f"
 #staticdefine("x", 11)
 #partBTest()
-staticRunner()
-staticlookup("c")
+staticRunner(testitem)
+#staticlookup("y")
+#print(type([]) is list)
